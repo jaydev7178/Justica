@@ -3,7 +3,7 @@ var URL="https://localhost:8081/api/";
 function getCitylist()
 {
     //const data = { username: varusername, password:varpassword };
-        fetch(URL+'Lawyer/login', {
+        fetch(URL+'City/get', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ function getCitylist()
                 //Then with the error genereted...
                 .catch((error) => {
                 console.error('Error:', error);
-                });
+                }); 
 }
 
 
