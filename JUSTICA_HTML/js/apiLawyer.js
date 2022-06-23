@@ -1,4 +1,4 @@
-var URL="https://localhost:8081/api/"; 
+var URL="http://localhost:8081/api/"; 
 
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
@@ -15,27 +15,73 @@ loginButton.addEventListener("click", (e) => {
     const varpassword = loginForm.password.value;
 
     if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
-        const data = { username: varusername, password:varpassword };
-        fetch(URL+'Lawyer/login', {
+        const details = { username: varusername, password:varpassword };
+        fetch(URL+'lawyer/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(details),
                 })
                 .then((response) => response.json())
                 //Then with the data from the response in JSON...
                 .then((data) => {
-                console.log('Success:', data);
+                    console.log('Success:', data);
+                    console.log(data.code);
+                    if(data.code=='201')
+                    {
+                        loginErrorMsg.innerHTML=data.obj;
+                        loginErrorMsg.hidden=false;
+
+                    }else if(data.code=='200'){
+                        if(localStorage.getItem('token'))
+                        {
+                            localStorage.clear()
+                        }
+                        localStorage.setItem('token', data.obj);
+                        fetch(URL+'lawyer/getProfile', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'token':data.obj,
+                                
+                            },
+                            body: JSON.stringify({}),
+                            }).then((response) => response.json())
+                            //Then with the data from the response in JSON...
+                            .then((profile) => {
+                                //alert('profile');
+                                if(profile.code=='200')
+                                {
+                                    console.log('profile', profile.obj);
+                                    //alert('profile');
+                                    //localStorage.setItem('profile', profile.obj);
+                                    localStorage.setItem('name', profile.obj.name);
+                                    localStorage.setItem('email', profile.obj.email);
+                                    localStorage.setItem('mobile', profile.obj.mobile);
+                                    localStorage.setItem('dob', profile.obj.dob);
+                                    localStorage.setItem('image', profile.obj.image);
+                                    localStorage.setItem('address', profile.obj.address);
+                                    localStorage.setItem('experience', profile.obj.experience);
+                                    localStorage.setItem('fees', profile.obj.fees);
+                                    localStorage.setItem('cityId', profile.obj.cityId);
+                                    localStorage.setItem('licenseNo', profile.obj.licenseNo);
+                                    window.location.href = 'profile-view.html';
+                                }
+                            })
+                        
+                    }
                 })
                 //Then with the error genereted...
                 .catch((error) => {
                 console.error('Error:', error);
+                loginErrorMsg.innerHTML='error: ',error;
+                loginErrorMsg.hidden=false;
                 });
         
         //httpPost("https://localhost:44325/api/admin/login")
-        alert("You have successfully logged in.");
-        location.reload();
+        //alert("You have successfully logged in.");
+        //location.reload();
     } else { // Otherwise, make the login error message show (change its oppacity)
         loginErrorMsg.style.opacity = 1;
     }
@@ -44,53 +90,53 @@ loginButton.addEventListener("click", (e) => {
 })
 
 
-const registrationForm= document.getElementById("registration-form");
-const registrationButton = document.getElementById("registration-form-submit");
-const registrationErrorMsg = document.getElementById("registration-error-msg");
+// const registrationForm= document.getElementById("registration-form");
+// const registrationButton = document.getElementById("registration-form-submit");
+// const registrationErrorMsg = document.getElementById("registration-error-msg");
 
 
-//Registration API
-registrationButton.addEventListener("click", (e) => {
-    // Prevent the default submission of the form
-    e.preventDefault();
-    // Get the values input by the user in the form fields
-    const firstName = loginForm.firstName.value;
-    const middleName = loginForm.middleName.value;
-    const lastName = loginForm.lastName.value;
-    const email = loginForm.email.value;
-    const mobile = loginForm.mobile.value;
-    const password = loginForm.password.value;
-    const licenseNo = loginForm.licenseNo.value;
-    const address = loginForm.address.value;
+// //Registration API
+// registrationButton.addEventListener("click", (e) => {
+//     // Prevent the default submission of the form
+//     e.preventDefault();
+//     // Get the values input by the user in the form fields
+//     const firstName = loginForm.firstName.value;
+//     const middleName = loginForm.middleName.value;
+//     const lastName = loginForm.lastName.value;
+//     const email = loginForm.email.value;
+//     const mobile = loginForm.mobile.value;
+//     const password = loginForm.password.value;
+//     const licenseNo = loginForm.licenseNo.value;
+//     const address = loginForm.address.value;
 
-    if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
-        const data = { username: varusername, password:varpassword };
-        fetch(URL+'Lawyer/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-                })
-                .then((response) => response.json())
-                //Then with the data from the response in JSON...
-                .then((data) => {
-                console.log('Success:', data);
-                })
-                //Then with the error genereted...
-                .catch((error) => {
-                console.error('Error:', error);
-                });
+//     if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
+//         const data = { username: varusername, password:varpassword };
+//         fetch(URL+'Lawyer/login', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//                 body: JSON.stringify(data),
+//                 })
+//                 .then((response) => response.json())
+//                 //Then with the data from the response in JSON...
+//                 .then((data) => {
+//                 console.log('Success:', data);
+//                 })
+//                 //Then with the error genereted...
+//                 .catch((error) => {
+//                 console.error('Error:', error);
+//                 });
         
-        //httpPost("https://localhost:44325/api/admin/login")
-        alert("You have successfully logged in.");
-        location.reload();
-    } else { // Otherwise, make the login error message show (change its oppacity)
-        loginErrorMsg.style.opacity = 1;
-    }
+//         //httpPost("https://localhost:44325/api/admin/login")
+//         alert("You have successfully logged in.");
+//         location.reload();
+//     } else { // Otherwise, make the login error message show (change its oppacity)
+//         loginErrorMsg.style.opacity = 1;
+//     }
 
     
-})
+// })
 
 /* #endregion */
 

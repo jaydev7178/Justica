@@ -9,10 +9,10 @@
         <meta content="" name="keywords">
         <meta content="" name="author">
         <!--[if lt IE 9]>
-            <script src="js/html5shiv.js"></script>
-            <![endif]-->
+                    <script src="js/html5shiv.js"></script>
+                    <![endif]-->
         <!-- CSS Files
-            ================================================== -->
+                    ================================================== -->
         <link id="bootstrap" href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/> <link id="bootstrap-grid" href="css/bootstrap-grid.min.css" rel="stylesheet" type="text/css"/>
         <link id="bootstrap-reboot" href="css/bootstrap-reboot.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/animate.css" rel="stylesheet" type="text/css">
@@ -145,37 +145,47 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="de-flex sm-pt10">
-                                <div class="de-flex-col">
+                                <div
+                                    class="de-flex-col">
                                     <!-- logo begin -->
                                     <div id="logo">
                                         <a href="index.html">
-                                            <img alt="" class="logo" src="images/logo-light.png" />
-                                            <img alt="" class="logo-2" src="images/logo.png" />
+                                            <img alt="" class="logo" src="images/logo-light.png"/>
+                                            <img alt="" class="logo-2" src="images/logo.png"/>
                                         </a>
                                     </div>
                                     <!-- logo close -->
                                 </div>
-                                <div class="de-flex-col header-col-mid">
+                                <div
+                                    class="de-flex-col header-col-mid">
                                     <!-- mainmenu begin -->
                                     <ul id="mainmenu">
-                                        <li><a href="index.html">Home</a>
+                                        <li>
+                                            <a href="index.html">Home</a>
                                         </li>
-                                        <li><a href="about.html">About</a>
+                                        <li>
+                                            <a href="about.html">About</a>
                                             <ul>
                                                 <li><a href="about.html">About Us</a></li>
                                                 <li><a href="team.html">The Team</a></li>
                                                 <li><a href="faq.html">FAQ</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="practice-areas.html">Practice Areas</a>
-                                           
+                                        <li>
+                                            <a href="practice-areas.html">Practice Areas</a>
+
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                                                        </ul>
+                                        <li>
+                                            <a href="contact.html">Contact</a>
+                                        </li>
+                                    </ul>
                                     <!-- mainmenu close -->
                                 </div>
                                 <div class="de-flex-col">
-                                    <div class="h-phone md-hide"><span>Need&nbsp;Help?</span><i class="fa fa-phone"></i> 1 200 300 9000</div>
+                                    <div class="h-phone md-hide">
+                                        <span>Need&nbsp;Help?</span>
+                                        <i class="fa fa-phone"></i>
+                                        1 200 300 9000</div>
                                     <span id="menu-btn"></span>
                                 </div>
                             </div>
@@ -209,33 +219,39 @@
                                 <h3>Enter your credentials</h3>
 
                                 <!-- <div id="customBtn" class="customGPlusSignIn">
-                                                                <span class="icon"></span>
-                                                                <span class="buttonText">Google</span>
-                                                              </div>
-                                                              
-                                                              <button class="loginBtn loginBtn--facebook">
-                                                                Login with Facebook
-                                                              </button> -->
+                                                                                                <span class="icon"></span>
+                                                                                                <span class="buttonText">Google</span>
+                                                                                              </div>
+                                                                                              
+                                                                                              <button class="loginBtn loginBtn--facebook">
+                                                                                                Login with Facebook
+                                                                                              </button> -->
 
-
-                                <form name="contactForm" id="contact_form" class="form-border" method="post" action="email.php">
+                                <!-- <div id="login-error-msg" class="error" value ="asdasd"></div> -->
+                                <div  class="alert alert-danger alert-dismissible fade show" id="login-error-msg" role="alert" hidden="false">
+                                    <a href="#" class="alert-link"  ></a>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                <form name="loginForm" id="login-form" class="form-border" method="post">
                                     <div class="field-set">
-                                        <input type="text" name="username" id="name" class="form-control" placeholder="Username"/>
+                                        <input type="text" required name="username" id="username" class="form-control" placeholder="Username"/>
                                     </div>
                                     <div class="field-set">
-                                        <input type="password" name="pass" id="" class="form-control" placeholder="Password"/>
+                                        <input type="password" required name="password" id="password" class="form-control" placeholder="Password"/>
                                     </div>
 
 
                                     <div class="spacer-half"></div>
                                     <div id="submit">
-                                        <input type="submit" id="send_message" value="Login" class="btn btn-custom"/>
+                                        <input type="submit" id="login-form-submit" value="Login" class="btn btn-custom"/>
                                     </div>
                                     <br>
                                     Don't have accout?
                                     <a href="register.html">Register</a>
                                     <div id="mail_success" class="success">Your message has been sent successfully.</div>
-                                    <div id="mail_fail" class="error">Sorry, error occured this time sending your message.</div>
+
                                 </form>
                             </div>
                             <div class="col-lg-4"></div>
@@ -258,7 +274,8 @@
         </div>
 
         <!-- Javascript Files
-            ================================================== -->
+                    ================================================== -->
+        <script src="js/apiLawyer.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/wow.min.js"></script>

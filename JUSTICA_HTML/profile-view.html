@@ -29,6 +29,17 @@
 </head>
 
 <body>
+    <script>
+        
+        // const token = localStorage.getItem('token');
+        // //console.log('token is '+token);
+        // if(!token)
+        // {
+        //     window.location.href = "login.html";
+        //     document.getElementById("login-error-msg").innerHTML('Session expired, Please login again.');
+        //     document.getElementById("login-error-msg").hidden=false;
+        // }
+    </script>
     <div id="wrapper">
         <div id="topbar" class="text-white bg-color">
             <div class="container">
@@ -164,7 +175,7 @@
                         </div>
                         <div id="sidebar" class="col-md-8">
                             <div class="widget widget-post">
-                                <h4>XYZ Name</h4>
+                                <h4 id="profile-view-lawyerName"></h4>
                                 <div class="small-border"></div>
                                 <ul>
                                     <li><span class="date">Gender</span><a href="#"> Six firms that are setting the trend</a></li>
@@ -350,6 +361,7 @@
     </div>
     <!-- Javascript Files
     ================================================== -->
+    <script src="js/profile-view.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/wow.min.js"></script>
