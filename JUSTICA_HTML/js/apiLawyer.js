@@ -90,53 +90,78 @@ loginButton.addEventListener("click", (e) => {
 })
 
 
-// const registrationForm= document.getElementById("registration-form");
-// const registrationButton = document.getElementById("registration-form-submit");
-// const registrationErrorMsg = document.getElementById("registration-error-msg");
+const registrationForm= document.getElementById("registration-form");
+const registrationButton = document.getElementById("registration-form-submit");
+const registrationErrorMsg = document.getElementById("registration-error-msg");
 
 
-// //Registration API
-// registrationButton.addEventListener("click", (e) => {
-//     // Prevent the default submission of the form
-//     e.preventDefault();
-//     // Get the values input by the user in the form fields
-//     const firstName = loginForm.firstName.value;
-//     const middleName = loginForm.middleName.value;
-//     const lastName = loginForm.lastName.value;
-//     const email = loginForm.email.value;
-//     const mobile = loginForm.mobile.value;
-//     const password = loginForm.password.value;
-//     const licenseNo = loginForm.licenseNo.value;
-//     const address = loginForm.address.value;
+//Registration API
+registrationButton.addEventListener("click", (e) => {
+    // Prevent the default submission of the form
+    e.preventDefault();
+    // Get the values input by the user in the form fields
+    const varname = loginForm.name.value;
+    console.log(name);
+    const varemail = loginForm.email.value;
+    const varmobile = loginForm.mobile.value;
+    const varpassword = loginForm.password.value;
+    const varlicenseNo = loginForm.licenseNo.value;
+    const varaddress = loginForm.address.value;
+    const vardob = loginForm.dob.value;
 
-//     if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
-//         const data = { username: varusername, password:varpassword };
-//         fetch(URL+'Lawyer/login', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(data),
-//                 })
-//                 .then((response) => response.json())
-//                 //Then with the data from the response in JSON...
-//                 .then((data) => {
-//                 console.log('Success:', data);
-//                 })
-//                 //Then with the error genereted...
-//                 .catch((error) => {
-//                 console.error('Error:', error);
-//                 });
+    if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
+        const data = {
+            email: varemail,
+            name:varname,
+            mobile: varmobile,
+            password: varpassword,
+            dob:vardob,
+            experience:null,
+            licenseNo:varlicenseNo,
+            fees:null,
+            image:null,
+            address:varaddress,
+            cityId:1
         
-//         //httpPost("https://localhost:44325/api/admin/login")
-//         alert("You have successfully logged in.");
-//         location.reload();
-//     } else { // Otherwise, make the login error message show (change its oppacity)
-//         loginErrorMsg.style.opacity = 1;
-//     }
+        };
+        console.log(data);
+        fetch(URL+'Lawyer/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+                })
+                .then((response) => response.json())
+                //Then with the data from the response in JSON...
+                .then((data) => {
+                //console.log('Success:', data);
+                if(data.code=='201')
+                    {
+                        registrationErrorMsg.innerHTML=data.obj;
+                        registrationErrorMsg.hidden=false;
+
+                    }else if(data.code=='200')
+                    {
+                        console.log(data.obj);
+                        //window.location.href = 'login.html';
+                    }
+                })
+                //Then with the error genereted...
+                .catch((error) => {
+                console.error('Error:', error);
+                });
+        
+        //httpPost("https://localhost:44325/api/admin/login")
+        //alert("You have successfully logged in.");
+        //location.reload();
+    } else { // Otherwise, make the login error message show (change its oppacity)
+        loginErrorMsg.style.opacity = 1;
+    }
 
     
-// })
+
+})
 
 /* #endregion */
 

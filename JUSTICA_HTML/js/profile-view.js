@@ -9,3 +9,11 @@ const token = localStorage.getItem('token');
 
 const ProfileViewlawyerName = document.getElementById("profile-view-lawyerName");
 ProfileViewlawyerName.innerHTML=localStorage.getItem('name');
+
+
+const loginErrorMsg = document.getElementById("profile-view-logout");
+loginErrorMsg .addEventListener("click", (e) =>
+{
+    localStorage.clear();
+    window.location.href = "login.html";
+})
