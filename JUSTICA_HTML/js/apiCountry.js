@@ -1,10 +1,8 @@
-//import URL from "./config.js";
+import URL from "./config.js";
 
 
-function getCountrylist()
+export default function getCountrylist()
 {
-    console.log(URL);
-    var redata = {}
     //const data = { username: varusername, password:varpassword };
         fetch(URL+'country/getCountryList', {
                 method: 'POST',
@@ -17,17 +15,13 @@ function getCountrylist()
                 //Then with the data from the response in JSON...
                 .then((data) => {
                 console.log('Success:', data);
-                redata=JSON.stringify(data);
-                console.log(redata);
-                return data.obj[0].name;
-                console.log('check');
+                return data;
+                })
+                //Then with the error genereted...
+                .catch((error) => {
+                console.error('Error:', error);
+                    return error;
                 }); 
-                
-            
-}
 
-function getdata()
-{
-    console.log('huu');
-    return 'hello';
+            
 }

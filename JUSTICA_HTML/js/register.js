@@ -1,9 +1,9 @@
 // require("./config.js");
 // require("./apiCity.js");
-// import URL from "./config.js";
+import URL from "./config.js";
 
-// import getCitylist from "./apiCity.js";
-// import {getCountrylist,getdata} from "./apiCountry.js";
+import getCitylist from "./apiCity.js";
+import getCountrylist from "./apiCountry.js";
 
 
 
@@ -15,16 +15,14 @@ const registrationFormSelectCountry = document.getElementById("registration-form
 const registrationFormSelectState = document.getElementById("registration-form-selectState");
 const registrationFormSelectCity = document.getElementById("registration-form-selectCity");
 
-//var data=getCountrylist();
-var data=getdata();
-
-console.log('list is',data);
+var list=getCountrylist();
 var html = '';
 
-// for (var i = 0; i < data.length; i++) {
-// html += '<option value='+data.obj[i].id+' >' + data.obj[i].name + '</option>';
-// }
-// registrationFormSelectCountry.innerHTML=html;
+for (var i = 0; i < list.obj; i++) {
+html += '<option value='+list.obj[i].id+' >' + list.obj[i].name + '</option>';
+}
+registrationFormSelectCountry.innerHTML=html;
+registrationFormSelectCountry.value()
 
 
 registrationFormSelectCountry.addEventListener("click",(e)=>{

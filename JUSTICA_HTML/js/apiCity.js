@@ -1,7 +1,7 @@
 //import URL from "./config.js";
 //required("./config.js");
 
- function getCitylist(countryId)
+export default function getCitylist()
 {
     //const data = { username: varusername, password:varpassword };
         fetch(URL+'city/getCityList', {
@@ -24,8 +24,8 @@
                 }); 
 
             
-}
-
+} 
+//export function getCitylist();
 
 // // When the login button is clicked, the following code is executed
 // loginButton.addEventListener("click", (e) => {

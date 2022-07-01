@@ -1,2 +1,2 @@
 const URL="http://localhost:8081/api/"; 
- URL;
+export default URL;
