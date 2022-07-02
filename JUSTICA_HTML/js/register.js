@@ -1,65 +1,167 @@
 // require("./config.js");
 // require("./apiCity.js");
-import URL from "./config.js";
+// import URL from "./config.js";
 
-import getCitylist from "./apiCity.js";
-import getCountrylist from "./apiCountry.js";
-
-
+// import getCitylist from "./apiCity.js";
+// import getCountrylist from "./apiCountry.js";
 
 
-const registrationForm= document.getElementById("registration-form");
+const registrationForm = document.getElementById("registration-form");
 const registrationButton = document.getElementById("registration-form-submit");
 const registrationErrorMsg = document.getElementById("registration-error-msg");
 const registrationFormSelectCountry = document.getElementById("registration-form-selectCountry");
 const registrationFormSelectState = document.getElementById("registration-form-selectState");
 const registrationFormSelectCity = document.getElementById("registration-form-selectCity");
 
-var list=getCountrylist();
+
 var html = '';
 
-for (var i = 0; i < list.obj; i++) {
-html += '<option value='+list.obj[i].id+' >' + list.obj[i].name + '</option>';
-}
-registrationFormSelectCountry.innerHTML=html;
-registrationFormSelectCountry.value()
+fetch(URL + 'country/getCountryList', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(null)
+}).then((response) => response.json())
+// Then with the data from the response in JSON....then((data) => {
+    .then((data) => {
+    //console.log('Success:', data);
+    //console.log('Success:', data.obj);
+    data.obj;
+
+    for (var i = 0; i < data.obj.length; i++) {
+        console.log(data.obj[i].name);
+        var option = document.createElement("option");
+        option.value = data.obj[i].id;
+        option.text = data.obj[i].name;
+        registrationFormSelectCountry.add(option);
+        // html += '<option value='+data.obj[i].id+' >' + data.obj[i].name + '</option>';
+    }
+
+    // Rdata = data;
+});
+// var list = getCountrylist();
+// console.log(list);
+
+// for (var i = 0; i < length(list); i++) {
+//     console.log(list[i].name);
+//     html += '<option value='+list.obj[i].id+' >' + list.obj[i].name + '</option>';
+// }
+//console.log(html);
+// registrationFormSelectCountry.innerHTML=html;
+// registrationFormSelectCountry.value();
 
 
-registrationFormSelectCountry.addEventListener("click",(e)=>{
+registrationFormSelectCountry.addEventListener("change", (e) => {
     console.log('click in country');
-    var selectedvalue= registrationFormSelectCountry.value;
-    if(selectedvalue=='None')
-    {
-        registrationErrorMsg.innerHTML="Please select Country.";
-        registrationErrorMsg.hidden=false;
-    }else
-    {
-        var list=getCitylist(registrationFormSelectCountry);
-        if(string.startsWith(list,'Error:'))
-        {
-            registrationErrorMsg.innerHTML=list;
-            registrationErrorMsg.hidden=false;
-        }else
-        {
-            if(list.code=="200")
-            {
+
+
+    var selectedvalue = registrationFormSelectCountry.value;
+    if (selectedvalue == 'None') {
+        registrationErrorMsg.innerHTML = "Please select Country.";
+        registrationErrorMsg.hidden = false;
+    } else {
+        fetch(URL + 'state/getStateListByCountryId', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({countryId:selectedvalue})
+        }).then((response) => response.json())
+        // Then with the data from the response in JSON....then((data) => {
+            .then((data) => {
+            //console.log('Success:', data);
+            console.log('Success:', data.obj);
+            //data.obj;
+            if (data.code == "200") {
                 var html = '';
+                registrationFormSelectState.innerHTML=null;
+                var option = document.createElement("option");
+                option.value ='None';
+                option.text = 'None';
                 
-                for (var i = 0; i < json.length; i++) {
-                html += '<option>' + list.obj[i].name + '</option>';
+                registrationFormSelectState.add(option);
+                for (var i = 0; i < data.obj.length; i++) {
+                    console.log(data.obj[i].name);
+                    var option = document.createElement("option");
+                    option.value = data.obj[i].id;
+                    option.text = data.obj[i].name;
+                    
+                    registrationFormSelectState.add(option);
+                    // html += '<option value='+data.obj[i].id+' >' + data.obj[i].name + '</option>';
                 }
-                registrationFormSelectCountry.innerHTML=html;
-            }else{
-                registrationErrorMsg.innerHTML=list.obj;
-                registrationErrorMsg.hidden=false;
+            } else {
+                registrationErrorMsg.innerHTML = list.obj;
+                registrationErrorMsg.hidden = false;
             }
-        }
+            
+
+            // Rdata = data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            registrationErrorMsg.innerHTML = error;
+            registrationErrorMsg.hidden = false;;
+        });
     }
 })
 
-//Registration API
-registrationButton.addEventListener("click", (e) => {
-    // Prevent the default submission of the form
+
+registrationFormSelectState.addEventListener("change", (e) => {
+    console.log('click in State');
+
+
+    var selectedvalue = registrationFormSelectState.value;
+    if (selectedvalue == 'None') {
+        registrationErrorMsg.innerHTML = "Please select State.";
+        registrationErrorMsg.hidden = false;
+    } else {
+        fetch(URL + 'city/getCityListByStateId', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({stateId:selectedvalue})
+        }).then((response) => response.json())
+        // Then with the data from the response in JSON....then((data) => {
+            .then((data) => {
+            //console.log('Success:', data);
+            console.log('Success:', data.obj);
+            //data.obj;
+            if (data.code == "200") {
+                var html = '';
+                registrationFormSelectCity.innerHTML=null;
+                var option = document.createElement("option");
+                option.value ='None';
+                option.text = 'None';
+                
+                registrationFormSelectCity.add(option);
+                for (var i = 0; i < data.obj.length; i++) {
+                    console.log(data.obj[i].name);
+                    var option = document.createElement("option");
+                    option.value = data.obj[i].id;
+                    option.text = data.obj[i].name;
+                    
+                    registrationFormSelectCity.add(option);
+                    // html += '<option value='+data.obj[i].id+' >' + data.obj[i].name + '</option>';
+                }
+            } else {
+                registrationErrorMsg.innerHTML = list.obj;
+                registrationErrorMsg.hidden = false;
+            }
+            
+
+            // Rdata = data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            registrationErrorMsg.innerHTML = error;
+            registrationErrorMsg.hidden = false;
+        });
+    }
+})
+
+
+// Registration API
+registrationButton.addEventListener("click", (e) => { // Prevent the default submission of the form
     e.preventDefault();
     // Get the values input by the user in the form fields
     const varname = registrationForm.name.value;
@@ -68,55 +170,53 @@ registrationButton.addEventListener("click", (e) => {
     const varmobile = registrationForm.mobile.value;
     const varpassword = registrationForm.password.value;
     const varlicenseNo = registrationForm.licenseNo.value;
-    //const varaddress = registrationForm.address.value;
+    // const varaddress = registrationForm.address.value;
     const vardob = registrationForm.dob.value;
+    if(registrationFormSelectCity.value=='None')
+    {
+        registrationErrorMsg.innerHTML = 'Please select location properly.';
+        registrationErrorMsg.hidden = false;
+    }
 
     const data = {
         email: varemail,
-        name:varname,
+        name: varname,
         mobile: varmobile,
         password: varpassword,
-        dob:vardob,
-        experience:null,
-        licenseNo:varlicenseNo,
-        fees:null,
-        image:null,
-        address:'street',
-        cityId:1
-    
-    };
-    console.log(data);
-    fetch(URL+'lawyer/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-            })
-            .then((response) => response.json())
-            //Then with the data from the response in JSON...
-            .then((data) => {
-            //console.log('Success:', data);
-            if(data.code=='201')
-                {
-                    console.log(data.obj);
-                    registrationErrorMsg.innerHTML=data.obj;
-                    registrationErrorMsg.hidden=false;
+        dob: vardob,
+        experience: null,
+        licenseNo: varlicenseNo,
+        fees: null,
+        image: null,
+        address: registrationForm.address.value,
+        cityId: registrationFormSelectCity.value
 
-                }else if(data.code=='200')
-                {
-                    console.log(data.obj);
-                    window.location.href = 'login.html';    
-                    alert("You have Registered successfully.");
-                }
-            })
-            //Then with the error genereted...
-            .catch((error) => {
-            console.error('Error:', error);
-            });
+    }
+    console.log(data);
+    fetch(URL + 'lawyer/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then((response) => response.json())
+    // Then with the data from the response in JSON....then((data) => { // console.log('Success:', data);
+        if (data.code == '201') {
+            console.log(data.obj);
+            registrationErrorMsg.innerHTML = data.obj;
+            registrationErrorMsg.hidden = false;
+
+        } else if (data.code == '200') {
+            console.log(data.obj);
+            window.location.href = 'login.html';
+            alert("You have Registered successfully.");
+        }
+    });
+    // Then with the error genereted....catch((error) => {
+       
     // if (varusername !=null && varpassword !=null) { // If the credentials are valid, show an alert box and reload the page
-        
-        
+
+
     //     //httpPost("https://localhost:44325/api/admin/login")
     //     //alert("You have successfully logged in.");
     //     //location.reload();
@@ -124,11 +224,5 @@ registrationButton.addEventListener("click", (e) => {
     //     loginErrorMsg.style.opacity = 1;
     // }
 
-    
-
-})
 
 /* #endregion */
-
-
-

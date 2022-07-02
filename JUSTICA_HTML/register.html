@@ -110,6 +110,8 @@
 </head>
 
 <body>
+    <script src="js/apiCountry.js"></script>
+    
     <div id="wrapper">
         <div id="topbar" class="text-white bg-color">
             <div class="container">
@@ -207,7 +209,7 @@
                               <button class="loginBtn loginBtn--facebook">
                                 Continue with Facebook
                               </button> -->
-                              <div  class="alert alert-danger alert-dismissible fade show" id="register-error-msg" role="alert" hidden="false">
+                              <div id="registration-error-msg" class="alert alert-danger alert-dismissible fade show" role="alert" hidden="false">
                                 <a href="#" class="alert-link"  ></a>.
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
@@ -253,7 +255,7 @@
 
                                 <div class="field-set" style="text-align: left;">
                                     <label style="color: white;text-align: left;">Select your Country:</label><br>
-                                    <select id="registration-form-selectCountry" style="color: white;background-color: #333; width: 60%;">
+                                    <select required id="registration-form-selectCountry" style="color: white;background-color: #333; width: 60%;">
                                         <option>None</option>
                                         <!-- <option>Ahmedabad</option>
                                         <option>Surat</option>
@@ -270,7 +272,7 @@
                                 
                                 <div class="field-set" style="text-align: left;">
                                     <label style="color: white;">Select your State:</label><br>
-                                    <select id="registration-form-selectState" style="color: white;background-color: #333; width: 60%;">
+                                    <select required id="registration-form-selectState" style="color: white;background-color: #333; width: 60%;">
                                         <option>None</option>
                                         <!-- <option>Ahmedabad</option>
                                         <option>Surat</option>
@@ -287,12 +289,14 @@
                                 
                                 <div class="field-set" style="text-align: left;">
                                     <label style="color: white;">Select your city:</label><br>
-                                    <select id="registration-form-selectCity" style="color: white;background-color: #333; width:60%;">
+                                    <select required id="registration-form-selectCity" style="color: white;background-color: #333; width:60%;">
                                         <option> None</option>
 
                                     </select>
                                 </div><br> 
-                                
+                                <div class="field-set" style="text-align: left;">
+                                    <textarea required  cols="60" name="address" id="address" class="form-control" placeholder="Street"></textarea>
+                                </div><br>
                                 <div class="spacer-half"></div>
                                 <div id="submit">
                                     <input type="submit" id="registration-form-submit" value="Register" class="btn btn-custom" />
@@ -326,8 +330,8 @@
     
     <!-- Javascript Files
     ================================================== -->
-    <script type="module" src="js/config.js"></script>
-    <script type="module" src="js/apiCity.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/apiCity.js"></script>
     <script type="module" src="js/register.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

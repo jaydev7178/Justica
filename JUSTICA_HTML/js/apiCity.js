@@ -1,7 +1,7 @@
 //import URL from "./config.js";
 //required("./config.js");
 
-export default function getCitylist()
+function getCitylist()
 {
     //const data = { username: varusername, password:varpassword };
         fetch(URL+'city/getCityList', {
