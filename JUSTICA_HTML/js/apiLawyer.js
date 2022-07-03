@@ -66,7 +66,7 @@ loginButton.addEventListener("click", (e) => {
                                     localStorage.setItem('fees', profile.obj.fees);
                                     localStorage.setItem('cityId', profile.obj.cityId);
                                     localStorage.setItem('licenseNo', profile.obj.licenseNo);
-                                    window.location.href = 'profile-view.html';
+                                    window.location.href = 'profile-home.html';
                                 }
                             })
                         
