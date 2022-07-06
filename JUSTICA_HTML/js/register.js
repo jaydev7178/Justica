@@ -1,9 +1,5 @@
-// require("./config.js");
-// require("./apiCity.js");
-// import URL from "./config.js";
 
-// import getCitylist from "./apiCity.js";
-// import getCountrylist from "./apiCountry.js";
+const URL="http://localhost:8081/api/"; 
 
 
 const registrationForm = document.getElementById("registration-form");

@@ -21,12 +21,12 @@ const ProfileHomeState= document.getElementById("profile-home-state");
 const ProfileHomeCountry= document.getElementById("profile-home-country");
 
 ProfileHomelawyerName.innerHTML=localStorage.getItem('name');
- ProfileHomeEmail.innerHTML=localStorage.getItem('email');
- ProfileHomeMobile.innerHTML=localStorage.getItem('mobile');
- ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
- ProfileHomedob.innerHTML=localStorage.getItem('dob');
- ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
- ProfileHomeAddress.innerHTML=localStorage.getItem('address');
+ProfileHomeEmail.innerHTML=localStorage.getItem('email');
+ProfileHomeMobile.innerHTML=localStorage.getItem('mobile');
+ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
+ProfileHomedob.innerHTML=localStorage.getItem('dob');
+ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
+ProfileHomeAddress.innerHTML=localStorage.getItem('address');
 // ProfileHomeCity.innerHTML=localStorage.getItem('city');
 // ProfileHomeState.innerHTML=localStorage.getItem('state');
 // ProfileHomeCountry.innerHTML=localStorage.getItem('country');
@@ -35,7 +35,7 @@ const loginErrorMsg = document.getElementById("profile-view-logout");
 var cityId=localStorage.getItem('cityId');
 var stateId=localStorage.getItem('stateId');
 var countryId=localStorage.getItem('countryId');
-console.log(URL);
+console.log(localStorage.getItem('token'));
 
 fetch(URL + 'city/getCityList', {
     method: 'POST',
@@ -116,3 +116,78 @@ fetch(URL + 'country/getCountryById', {
     // RcountryData = countryData;
 });
 
+const ProfileHomeSelectLawType= document.getElementById("profile-home-selectLawType");
+const ProfileHomeSelectLawSubtype= document.getElementById("profile-home-selectLawSubtype");
+
+
+fetch(URL + 'lawType/getLawTypeList', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'token':localStorage.getItem('token'),
+    },
+    body: JSON.stringify({})
+}).then((response) => response.json())
+// Then with the countryData from the response in JSON....then((countryData) => {
+    .then((lawType) => {
+    //console.log('Success:', countryData);
+    console.log('Success:', lawType.obj);
+    //countryData.obj;
+    if (lawType.code == "200") {
+        ProfileHomeSelectLawType.innerHTML=null;
+                var option = document.createElement("option");
+                option.value ='None';
+                option.text = 'None';
+                
+                ProfileHomeSelectLawType.add(option);
+                for (var i = 0; i < lawType.obj.length; i++) {
+                    console.log(lawType.obj[i].name);
+                    var option = document.createElement("option");
+                    option.value = lawType.obj[i].id;
+                    option.text = lawType.obj[i].name;
+                    
+                    ProfileHomeSelectLawType.add(option);
+
+                    fetch(URL + 'lawType/getLawTypeList', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'token':localStorage.getItem('token'),
+                        },
+                        body: JSON.stringify({})
+                    }).then((response) => response.json())
+                    // Then with the countryData from the response in JSON....then((countryData) => {
+                        .then((lawType) => {
+                        //console.log('Success:', countryData);
+                        console.log('Success:', lawType.obj);
+                        //countryData.obj;
+                        if (lawType.code == "200") {
+                            ProfileHomeSelectLawType.innerHTML=null;
+                                    var option = document.createElement("option");
+                                    option.value ='None';
+                                    option.text = 'None';
+                                    
+                                    ProfileHomeSelectLawType.add(option);
+                                    for (var i = 0; i < lawType.obj.length; i++) {
+                                        console.log(lawType.obj[i].name);
+                                        var option = document.createElement("option");
+                                        option.value = lawType.obj[i].id;
+                                        option.text = lawType.obj[i].name;
+                                        
+                                        ProfileHomeSelectLawType.add(option);
+                    
+                    
+                    
+                    
+                                    }
+                            
+                        } 
+                      
+                    });
+
+
+                }
+        
+    } 
+  
+});

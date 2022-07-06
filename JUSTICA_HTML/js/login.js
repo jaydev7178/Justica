@@ -19,6 +19,10 @@ loginButton.addEventListener("click", (e) => {
                 },
                 body: JSON.stringify(data),
                 })
+
+
+
+                
                 .then((response) => response.json())
                 //Then with the data from the response in JSON...
                 .then((data) => {
