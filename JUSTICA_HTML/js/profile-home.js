@@ -213,9 +213,111 @@ ProfileHomeSelectLawType.addEventListener('change',(e) => {
 
 });
 
+async function lawyerLawSubtypeMappingAPI(data,apiName)
+{
+    const reponse= await fetch("http://localhost:8081/api/lawyerLawSubtypeMapping/"+apiName,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'token':''+localStorage.getItem('token')+'',
+        },
+        body: JSON.stringify(data)
+    });
+
+    var data=reponse.json();
+    return data;
+    
+} 
+
+
+// async function getLawyerLawSubtypeMapping(data)
+// {
+//     const reponse= await fetch("http://localhost:8081/api/lawyerLawSubtypeMapping/getLawyerLawSubtypeMappingList",{
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'token':''+localStorage.getItem('token')+'',
+//         },
+//         body: JSON.stringify(data)
+//     });
+
+//     var data=reponse.json();
+//     return data;
+    
+// } 
+
+// async function deleteLawyerLawSubtypeMapping(data)
+// {
+//     const reponse= await fetch("http://localhost:8081/api/lawyerLawSubtypeMapping/deleteLawyerLawSubtypeMappingById",{
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'token':''+localStorage.getItem('token')+'',
+//         },
+//         body: JSON.stringify(data)
+//     });
+
+//     var data=reponse.json();
+//     return data;
+    
+// } 
+
+
+
+function deleteLawyerSubtypeMapping(lawyerSubtypeMappingid){
+    console.log('delete id '+lawyerSubtypeMappingid);
+    var input={id:lawyerSubtypeMappingid}
+
+    
+    var output=lawyerLawSubtypeMappingAPI(input,"deleteLawyerLawSubtypeMappingById");
+    
+    output.then((getdata=>{
+        if(getdata.code=="201")
+        {
+            ProfileHomeErrorMsg.innerText=getdata.obj;
+            ProfileHomeErrorMsg.hidden=false;
+        }else{
+            ProfileHomeErrorMsg.hidden=true;
+            $("#profile-home-success-msg a").text(getdata.obj);
+            document.getElementById("profile-home-success-msg").hidden=false;
+            //window.location.href = 'profile-home.html';
+            location.reload();
+        }
+
+    }));
+}
+
+
+
 const ProfileHomeAddTypeBtn= document.getElementById("profile-home-addTypeBtn");
 const ProfileHomeUlLawSubType= document.getElementById("profile-home-ul-lawSubType");
 
+var input={};
+var output=lawyerLawSubtypeMappingAPI(input,"getLawyerLawSubtypeMappingList");
+output.then((getdata=>{
+    if(getdata.code=="201")
+    {
+        ProfileHomeErrorMsg.innerText=getdata.obj;
+        ProfileHomeErrorMsg.hidden=false;
+    }else{
+        ProfileHomeErrorMsg.hidden=true;
+
+        console.log("getdata");
+        console.log(getdata);
+        for (var i = 0; i < getdata.obj.length; i++) {
+            console.log(getdata.obj.lawSubtypeName);
+            $("#profile-home-ul-lawSubType #profile-home-ul-row").append("<div><div class='row' style='padding: 22px;'>\
+            <li><a>"+getdata.obj[i].lawSubtypeName+"</a></li>\
+            <center>\
+            <button type='button' class='close' value="+getdata.obj[i].id+" onclick='deleteLawyerSubtypeMapping(this.value)' data-dismiss='alert' aria-label='Close'>\
+                <span aria-hidden='true'>&times;</span>\
+            </button></center>\
+        </div></div>");
+            
+        }
+    }
+    
+}));
 
 ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
     
@@ -224,11 +326,27 @@ ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
         ProfileHomeErrorMsg.innerText="Please Select Subtype.";
         ProfileHomeErrorMsg.hidden=false;
     }else{
-        var output=null;
-        getResponse('lawyerLawSubtypeMapping/saveLawyerLawSubtypeMapping',{lawSubtypeId:ProfileHomeSelectLawSubtype.value}).then(output=>{
-            console.log(output);    
-        })
-        console.log(output);
+        var input={lawSubtypeId:ProfileHomeSelectLawSubtype.value};
+        var output=lawyerLawSubtypeMappingAPI(input,"saveLawyerLawSubtypeMapping");
+        
+        output.then((data=>{
+            if(data.code=="201")
+            {
+                ProfileHomeErrorMsg.innerText=data.obj;
+                ProfileHomeErrorMsg.hidden=false;
+            }else{
+                ProfileHomeErrorMsg.hidden=true;
+            $("#profile-home-success-msg a").text(data.obj);
+            document.getElementById("profile-home-success-msg").hidden=false;
+            }
+            location.reload();
+            
+
+            
+        }));
+        
+        
+        
         // fetch(URL + , {
         //     method: 'POST',
         //     headers: {
