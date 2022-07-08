@@ -1,4 +1,5 @@
 //import URL from "config.js";
+const URL="http://localhost:8081/api/"; 
 
 const loginForm = document.getElementById("login-form");
 const loginButton = document.getElementById("login-form-submit");
