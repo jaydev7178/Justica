@@ -111,7 +111,7 @@
                 position: relative;
                 border: 5px solid #fff;
                 border-radius: 50%;
-                background: url("../JUSTICA_HTML/images/background/v.jpg");
+                background: url("images/layerProfileImage/defaultProfileImage.png");
                 background-size: 100% 100%;
                 margin: 100px auto;
                 overflow: hidden;
@@ -249,14 +249,14 @@
             <!-- header close -->
             <!-- content begin -->
             <div class="no-bottom no-top" id="content">
-                <div id="top"></div>
+                
                 <!-- section begin -->
                 <section id="subheader" class="text-light" data-stellar-background-ratio=".2" data-bgimage="url(images/background/subheader2.jpg) top">
                     <div class="center-y relative text-center">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <h1>Profile</h1>
+                                    <h1>Update Profile</h1>
                                     <p>Reputation. Respect. Result.</p>
                                 </div>
                                 <div class="clearfix"></div>
@@ -269,42 +269,37 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-8 offset-lg-2 mb-sm-30 text-center">
+                                <div id="update-profile-error-msg" class="alert alert-danger alert-dismissible fade show" role="alert" hidden="false">
+                                    <a href="#" class="alert-link"  ></a>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
                                 <form name="contactForm" id="contact_form" class="form-border" method="post" action="Login.html">
                                     <center>
                                         <div class="wrapper">
-                                            <input type="file" id="img" class="my_file" name="img" placeholder="Choose Image Here" accept="image/*"/
-                                            style=""
-                                            >
+                                            <input type="file" id="img" class="my_file" name="img" placeholder="Choose Image Here" accept="image/*">
                                         </div>
                                     </center>
 
                                     <div class="field-set">
-                                        <input type="text" name="firstName" id="" class="form-control" placeholder="First Name"/>
-                                    </div>
-
-                                    <div class="field-set">
-                                        <input type="text" name="middleName" id="" class="form-control" placeholder="Middle Name"/>
-                                    </div>
-
-                                    <div class="field-set">
-                                        <input type="text" name="lastName" id="" class="form-control" placeholder="Last Name"/>
+                                        <input type="text" name="name" id="" class="form-control" placeholder="Name"/>
                                     </div>
 
                                     <div class="field-set">
                                         <input type="text" name="email" id="" class="form-control" placeholder="Email"/>
                                     </div>
+                                    
                                     <div class="field-set">
-                                        <input type="password" name="pass" id="" class="form-control" placeholder="Password"/>
+                                        <input min="0" max="80" type="number" style="background-color: #333;color: white;" name="Experience" id="" class="form-control" placeholder="Experience in year"/>
                                     </div>
-
-                                    <div class="field-set">
-                                        <input style="background-color: #333" type="tel" name="mobile" id="" class="form-control" placeholder="Phone Number"/>
-                                    </div>
+                                    
                                     <br/>
 
                                     <div class="field-set">
-                                        <input type="text" name="license_no" id="" class="form-control" placeholder="License or Unique ID"/>
+                                        <input type="tel" style="background-color: #333;color: white;" name="mobile" id="" class="form-control" placeholder="Phone Number"/>
                                     </div>
+                                    
                                     <br/>
 
                                     <div class="field-set">
@@ -326,16 +321,15 @@
                                     </div>
                                     <br/>
 
-                                    <div class="field-set">
-                                        <input type="date" name="dob" id="" class="form-control"/>
-                                    </div>
-                                    <br/>
-
-                                    <div class="field-set">
-                                        <label style="color: white">Select your city:</label>
-                                        <select style="color: white; background-color: #333; width: 84%">
-                                            <option>Vadodara</option>
-                                            <option>Ahmedabad</option>
+                                    <div class="field-set" style="text-align: left;">
+                                        <input required type="date" name="dob" id="dob" class="form-control"/>
+                                    </div><br>
+    
+                                    <div class="field-set" style="text-align: left;">
+                                        <label style="color: white;text-align: left;">Select your Country:</label><br>
+                                        <select required id="registration-form-selectCountry" style="color: white;background-color: #333; width: 60%;">
+                                            <option>None</option>
+                                            <!-- <option>Ahmedabad</option>
                                             <option>Surat</option>
                                             <option>Mumbai</option>
                                             <option>Pune</option>
@@ -344,11 +338,37 @@
                                             <option>Hyderabad</option>
                                             <option>Delhi</option>
                                             <option>Karnataka</option>
-                                            <option>Chennai</option>
+                                            <option>Chennai</option> -->
                                         </select>
                                     </div>
-                                    <br/>
-
+                                    
+                                    <div class="field-set" style="text-align: left;">
+                                        <label style="color: white;">Select your State:</label><br>
+                                        <select required id="registration-form-selectState" style="color: white;background-color: #333; width: 60%;">
+                                            <option>None</option>
+                                            <!-- <option>Ahmedabad</option>
+                                            <option>Surat</option>
+                                            <option>Mumbai</option>
+                                            <option>Pune</option>
+                                            <option>Rajkot</option>
+                                            <option>Bangalore</option>
+                                            <option>Hyderabad</option>
+                                            <option>Delhi</option>
+                                            <option>Karnataka</option>
+                                            <option>Chennai</option> -->
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="field-set" style="text-align: left;">
+                                        <label style="color: white;">Select your city:</label><br>
+                                        <select required id="registration-form-selectCity" style="color: white;background-color: #333; width:60%;">
+                                            <option> None</option>
+    
+                                        </select>
+                                    </div>
+                                    <div class="field-set" style="text-align: left;">
+                                        <textarea required  cols="60" name="address" id="address" class="form-control" placeholder="Street"></textarea>
+                                    </div><br>
                                     <div class="spacer-half"></div>
                                     <div id="submit">
                                         <input type="submit" id="send_message" value="Update" class="btn btn-custom"/>

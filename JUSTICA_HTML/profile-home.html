@@ -118,11 +118,7 @@
 
                             </div>
                             <div class="de-flex-col">
-                                <div class="h-phone md-hide">
-                                    <span>Need&nbsp;Help?</span>
-                                    <i class="fa fa-phone"></i>
-                                    1 200 300 9000</div>
-                                <span id="menu-btn"></span>
+                                
                             </div>
                         </div>
                     </div>
@@ -165,7 +161,11 @@
                         </div>
                         <div id="sidebar" class="col-md-6">
                             <div class="widget widget-post">
-                                <h4 id="profile-home-lawyerName"></h4>
+                                <div class="row" >
+                                    <h4 style="padding-top:3% ;" id="profile-home-lawyerName"></h4>
+                                    <div style="padding-left: 48%;"><button  class="btn btn-custom btn" onclick="window.location.href = './update_profile.html';">Edit Profile</button></div>
+                                </div>
+                                
                                 <div class="row" style="padding-left: 10px;">
                                     <p> </p>
                                     <div class="small-border"></div>
@@ -249,16 +249,7 @@
                                         <label style="color: black;text-align: left;">Law Type </label><br>
                                         <select required id="profile-home-selectLawType" style="color: white;background-color: #333; width: 80%;">
                                             <option>None</option>
-                                            <!-- <option>Ahmedabad</option>
-                                            <option>Surat</option>
-                                            <option>Mumbai</option>
-                                            <option>Pune</option>
-                                            <option>Rajkot</option>
-                                            <option>Bangalore</option>
-                                            <option>Hyderabad</option>
-                                            <option>Delhi</option>
-                                            <option>Karnataka</option>
-                                            <option>Chennai</option> -->
+                                            
                                         </select>
                                     </div>
                                     
@@ -266,16 +257,7 @@
                                         <label style="color: black;text-align: left;">Law Subtype</label><br>
                                         <select required id="profile-home-selectLawSubtype" style="color: white;background-color: #333; width: 80%;">
                                             <option>None</option>
-                                            <!-- <option>Ahmedabad</option>
-                                            <option>Surat</option>
-                                            <option>Mumbai</option>
-                                            <option>Pune</option>
-                                            <option>Rajkot</option>
-                                            <option>Bangalore</option>
-                                            <option>Hyderabad</option>
-                                            <option>Delhi</option>
-                                            <option>Karnataka</option>
-                                            <option>Chennai</option> -->
+                                            
                                         </select>
                                     </div>
                                     <div class="field-set" style="text-align: left;width: 2%; ">
@@ -285,98 +267,19 @@
 
                                 </div>
                                 
-                                <ul id="profile-home-ul-lawSubType">
-                                    <div class="row" id="profile-home-ul-row" style="padding: 5px;">
+                                <ul id="profile-home-ul-lawSubType" style="padding-left:30px ;">
+                                    <div class="row" id="profile-home-ul-row" >
                                         <!-- <li><a>Art</a></li>
                                         <center>
                                         <button type="button" class="close" value="" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button></center> -->
                                     </div>
-                                    <!-- <li><a>Art</a></li>
-                                    <li><a href="#link">Art</a></li>
-                                    <li><a href="#link">Application</a></li>
-                                    <li><a href="#link">Design</a></li>
-                                    <li><a href="#link">Entertainment</a></li>
-                                    <li><a href="#link">Internet</a></li>
-                                    <li><a href="#link">Marketing</a></li>
-                                    <li><a href="#link">Multipurpose</a></li>
-                                    <li><a href="#link">Music</a></li>
-                                    <li><a href="#link">Print</a></li>
-                                    <li><a href="#link">Programming</a></li>
-                                    <li><a href="#link">Responsive</a></li>
-                                    <li><a href="#link">Website</a></li> -->
+                                    
                                 </ul>
                             </div>
                             
-                            <!-- <div id="blog-comment">
-                                                            <h4>Comments (5)</h4>
-                                                            <div class="spacer-half"></div>
-                                                            <ol>
-                                                                <li>
-                                                                    <div class="avatar">
-                                                                        <img src="images/misc/avatar.png" alt="" /></div>
-                                                                    <div class="comment-info">
-                                                                        <span class="c_name">John Smith</span>
-                                                                        <span class="c_date id-color">15 January 2020</span>
-                                                                        <span class="c_reply"><a href="#">Reply</a></span>
-                                                                        <div class="clearfix"></div>
-                                                                    </div>
-                                                                    <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                                                    <ol>
-                                                                        <li>
-                                                                            <div class="avatar">
-                                                                                <img src="images/misc/avatar.png" alt="" /></div>
-                                                                            <div class="comment-info">
-                                                                                <span class="c_name">John Smith</span>
-                                                                                <span class="c_date id-color">15 January 2020</span>
-                                                                                <span class="c_reply"><a href="#">Reply</a></span>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                                                                explicabo.</div>
-                                                                        </li>
-                                                                    </ol>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="avatar">
-                                                                        <img src="images/misc/avatar.png" alt="" /></div>
-                                                                    <div class="comment-info">
-                                                                        <span class="c_name">John Smith</span>
-                                                                        <span class="c_date id-color">15 January 2020</span>
-                                                                        <span class="c_reply"><a href="#">Reply</a></span>
-                                                                        <div class="clearfix"></div>
-                                                                    </div>
-                                                                    <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                                                    <ol>
-                                                                        <li>
-                                                                            <div class="avatar">
-                                                                                <img src="images/misc/avatar.png" alt="" /></div>
-                                                                            <div class="comment-info">
-                                                                                <span class="c_name">John Smith</span>
-                                                                                <span class="c_date id-color">15 January 2020</span>
-                                                                                <span class="c_reply"><a href="#">Reply</a></span>
-                                                                                <div class="clearfix"></div>
-                                                                            </div>
-                                                                            <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                                                                explicabo.</div>
-                                                                        </li>
-                                                                    </ol>
-                                                                </li>
-                                                                <li>
-                                                                    <div class="avatar">
-                                                                        <img src="images/misc/avatar.png" alt="" /></div>
-                                                                    <div class="comment-info">
-                                                                        <span class="c_name">John Smith</span>
-                                                                        <span class="c_date id-color">15 January 2020</span>
-                                                                        <span class="c_reply"><a href="#">Reply</a></span>
-                                                                        <div class="clearfix"></div>
-                                                                    </div>
-                                                                    <div class="comment">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</div>
-                                                                </li>
-                                                            </ol>
-                                                            <div class="spacer-single"></div>                                
-                                                        </div> -->
+                            
                         </div>
                         <div id="sidebar" class="col-md-2">
 
