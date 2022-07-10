@@ -274,47 +274,55 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
+                                </div>
+                                
+                                <div id="update-profile-success-msg" class="alert alert-success alert-dismissible fade show" role="alert" hidden=true>
+                                    <a class="alert-link"></a>.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
                                   </div>
-                                <form name="contactForm" id="contact_form" class="form-border" method="post" action="Login.html">
+
+                                <form name="contactForm" id="update-profile-form" class="form-border" method="post" action="Login.html">
                                     <center>
                                         <div class="wrapper">
-                                            <input type="file" id="img" class="my_file" name="img" placeholder="Choose Image Here" accept="image/*">
+                                            <input type="file" id="update-profile-img" class="my_file" name="img" placeholder="Choose Image Here" accept="image/*">
                                         </div>
                                     </center>
 
                                     <div class="field-set">
-                                        <input type="text" name="name" id="" class="form-control" placeholder="Name"/>
+                                        <label style="color: white;float: left;">Name:</label><br>
+                                        <input type="text" name="name" id="update-profile-name" required class="form-control" placeholder="Name"/>
                                     </div>
 
                                     <div class="field-set">
-                                        <input type="text" name="email" id="" class="form-control" placeholder="Email"/>
+                                        <label style="color: white;float: left;">Email:</label><br>
+                                        <input type="text" name="email" id="update-profile-email" required class="form-control" placeholder="Email"/>
                                     </div>
                                     
                                     <div class="field-set">
-                                        <input min="0" max="80" type="number" style="background-color: #333;color: white;" name="Experience" id="" class="form-control" placeholder="Experience in year"/>
-                                    </div>
-                                    
-                                    <br/>
-
-                                    <div class="field-set">
-                                        <input type="tel" style="background-color: #333;color: white;" name="mobile" id="" class="form-control" placeholder="Phone Number"/>
+                                        <label style="color: white;float: left;">Experience:</label><br>
+                                        <input min="0" max="80" type="number" style="background-color: #333;color: white;" name="Experience" id="update-profile-experience" class="form-control" placeholder="Experience in year"/>
                                     </div>
                                     
                                     <br/>
 
                                     <div class="field-set">
-                                        <table style="
-                                                                        width: 40%;
-                                                                        border-radius: 15px;
-                                                                        background-color: #333;
-                                                                      ">
+                                        <label style="color: white;float: left;">Mobile:</label><br>
+                                        <input type="tel" style="background-color: #333;color: white;" required name="mobile" id="update-profile-mobile" class="form-control" placeholder="Phone Number"/>
+                                    </div>
+                                    
+                                    <br/>
+
+                                    <div class="field-set">
+                                        <table style="width: 40%;border-radius: 15px;background-color: #333;">
                                             <tr>
                                                 <th>
                                                     <p>Please select your gender:</p>
                                                     <label style="color: white" for="male">Male</label>
-                                                    <input type="radio" name="gender" id="male" value="male" checked/>
+                                                    <input type="radio" name="gender" id="update-profile-gender" value="male" checked/>
                                                     <label style="color: white" for="female">Female</label>
-                                                    <input type="radio" name="gender" id="female" value="female"/>
+                                                    <input type="radio" name="gender" id="update-profile-gender" value="female"/>
                                                 </th>
                                             </tr>
                                         </table>
@@ -322,12 +330,12 @@
                                     <br/>
 
                                     <div class="field-set" style="text-align: left;">
-                                        <input required type="date" name="dob" id="dob" class="form-control"/>
+                                        <input required type="date" name="dob" id="update-profile-dob" required class="form-control"/>
                                     </div><br>
     
                                     <div class="field-set" style="text-align: left;">
                                         <label style="color: white;text-align: left;">Select your Country:</label><br>
-                                        <select required id="registration-form-selectCountry" style="color: white;background-color: #333; width: 60%;">
+                                        <select required id="update-profile-selectCountry" style="color: white;background-color: #333; width: 60%;">
                                             <option>None</option>
                                             <!-- <option>Ahmedabad</option>
                                             <option>Surat</option>
@@ -344,7 +352,7 @@
                                     
                                     <div class="field-set" style="text-align: left;">
                                         <label style="color: white;">Select your State:</label><br>
-                                        <select required id="registration-form-selectState" style="color: white;background-color: #333; width: 60%;">
+                                        <select required id="update-profile-selectState" style="color: white;background-color: #333; width: 60%;">
                                             <option>None</option>
                                             <!-- <option>Ahmedabad</option>
                                             <option>Surat</option>
@@ -361,25 +369,28 @@
                                     
                                     <div class="field-set" style="text-align: left;">
                                         <label style="color: white;">Select your city:</label><br>
-                                        <select required id="registration-form-selectCity" style="color: white;background-color: #333; width:60%;">
+                                        <select required id="update-profile-selectCity" required style="color: white;background-color: #333; width:60%;">
                                             <option> None</option>
     
                                         </select>
                                     </div>
                                     <div class="field-set" style="text-align: left;">
-                                        <textarea required  cols="60" name="address" id="address" class="form-control" placeholder="Street"></textarea>
+                                        <label style="color: white;float: left;">Address:</label><br>
+                                        <textarea required  cols="60" name="address" id="update-profile-address" class="form-control" placeholder="Street"></textarea>
                                     </div><br>
                                     <div class="spacer-half"></div>
-                                    <div id="submit">
-                                        <input type="submit" id="send_message" value="Update" class="btn btn-custom"/>
+                                    <div class="row" >
+                                        <div id="submit" style="padding-left: 30%;">
+                                            <input type="submit" id="update-profile-submitbtn" value="Update" class="btn btn-custom"/>
+                                        </div>
+                                        
+                                        <div id="submit" style="padding-left: 10%;">
+                                            <input type="submit" style="background-color:#FF4500 ;" id="update-profile-cancelbtn" value="Cancel" class="btn btn-custom"/>
+                                        </div>
+
                                     </div>
                                     <br/>
-                                    <div id="mail_success" class="success">
-                                        Your message has been sent successfully.
-                                    </div>
-                                    <div id="mail_fail" class="error">
-                                        Sorry, error occured this time sending your message.
-                                    </div>
+                                    
                                 </form>
                             </div>
                             <div class="col-lg-4"></div>
@@ -402,6 +413,7 @@
 
         <!-- Javascript Files
             ================================================== -->
+        <script src="js/update-profile.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/wow.min.js"></script>

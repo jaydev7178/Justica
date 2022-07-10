@@ -39,10 +39,6 @@ ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
 ProfileHomedob.innerHTML=localStorage.getItem('dob');
 ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
 ProfileHomeAddress.innerHTML=localStorage.getItem('address');
-// ProfileHomeCity.innerHTML=localStorage.getItem('city');
-// ProfileHomeState.innerHTML=localStorage.getItem('state');
-// ProfileHomeCountry.innerHTML=localStorage.getItem('country');
-
 const ProfileHomeErrorMsg = document.getElementById("profile-home-error-msg");
 var cityId=localStorage.getItem('cityId');
 
@@ -65,68 +61,13 @@ fetch(URL + 'city/getCityList', {
         ProfileHomeCity.innerHTML=cityData.obj.name;
         ProfileHomeState.innerHTML=cityData.obj.stateName;
         ProfileHomeCountry.innerHTML=cityData.obj.countryName;
-        // fetch(URL + 'state/getStateList', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({id:cityData.obj.stateId})
-        // }).then((response) => response.json())
-        // // Then with the data from the response in JSON....then((data) => {
-        //     .then((StateData) => {
-        //     ////console.log('Success:', data);
-        //     //console.log('Success:', StateData.obj);
-        //     //data.obj;
-        //     if (StateData.code == "200") {
-        //         //console.log(StateData.obj.name);
-        //         ProfileHomeState.innerHTML=StateData.obj.name;
-        //         fetch(URL + 'country/getCountryById', {
-        //             method: 'POST',
-        //             headers: {
-        //                 'Content-Type': 'application/json'
-        //             },
-        //             body: JSON.stringify({id:StateData.obj.countryId})
-        //         }).then((response) => response.json())
-        //         // Then with the countryData from the response in JSON....then((countryData) => {
-        //             .then((countryData) => {
-        //             ////console.log('Success:', countryData);
-        //             //console.log('Success:', countryData.obj);
-        //             //countryData.obj;
-        //             if (countryData.code == "200") {
-        //                 //console.log(countryData.obj.name);
-        //                 ProfileHomeCountry.innerHTML=countryData.obj.name;
-                        
-        //             } 
-        //             // RcountryData = countryData;
-        //         });
-        //     } 
-        //     // Rdata = data;
-        // });
+        
         
     } 
     // Rdata = data;
 });
 
 
-// fetch(URL + 'country/getCountryById', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({id:countryId})
-// }).then((response) => response.json())
-// // Then with the countryData from the response in JSON....then((countryData) => {
-//     .then((countryData) => {
-//     ////console.log('Success:', countryData);
-//     //console.log('Success:', countryData.obj);
-//     //countryData.obj;
-//     if (countryData.code == "200") {
-//         //console.log(countryData.obj.name);
-//         ProfileHomeCity.innerHTML=countryData.obj.name;
-        
-//     } 
-//     // RcountryData = countryData;
-// });
 
 const ProfileHomeSelectLawType= document.getElementById("profile-home-selectLawType");
 const ProfileHomeSelectLawSubtype= document.getElementById("profile-home-selectLawSubtype");
@@ -230,39 +171,6 @@ async function lawyerLawSubtypeMappingAPI(data,apiName)
     return data;
     
 } 
-
-
-// async function getLawyerLawSubtypeMapping(data)
-// {
-//     const reponse= await fetch("http://localhost:8081/api/lawyerLawSubtypeMapping/getLawyerLawSubtypeMappingList",{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'token':''+localStorage.getItem('token')+'',
-//         },
-//         body: JSON.stringify(data)
-//     });
-
-//     var data=reponse.json();
-//     return data;
-    
-// } 
-
-// async function deleteLawyerLawSubtypeMapping(data)
-// {
-//     const reponse= await fetch("http://localhost:8081/api/lawyerLawSubtypeMapping/deleteLawyerLawSubtypeMappingById",{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             'token':''+localStorage.getItem('token')+'',
-//         },
-//         body: JSON.stringify(data)
-//     });
-
-//     var data=reponse.json();
-//     return data;
-    
-// } 
 
 
 
