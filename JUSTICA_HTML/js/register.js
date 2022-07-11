@@ -36,17 +36,6 @@ fetch(URL + 'country/getCountryList', {
 
     // Rdata = data;
 });
-// var list = getCountrylist();
-// console.log(list);
-
-// for (var i = 0; i < length(list); i++) {
-//     console.log(list[i].name);
-//     html += '<option value='+list.obj[i].id+' >' + list.obj[i].name + '</option>';
-// }
-//console.log(html);
-// registrationFormSelectCountry.innerHTML=html;
-// registrationFormSelectCountry.value();
-
 
 registrationFormSelectCountry.addEventListener("change", (e) => {
     console.log('click in country');
@@ -89,7 +78,7 @@ registrationFormSelectCountry.addEventListener("change", (e) => {
             } else {
                 registrationErrorMsg.innerHTML = list.obj;
                 registrationErrorMsg.hidden = false;
-            }
+            }   
             
 
             // Rdata = data;
@@ -185,7 +174,7 @@ registrationButton.addEventListener("click", (e) => { // Prevent the default sub
         fees: null,
         image: null,
         address: registrationForm.address.value,
-        cityId: registrationFormSelectCity.value
+        city_id: registrationFormSelectCity.value
 
     }
     console.log(data);

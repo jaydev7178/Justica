@@ -49,7 +49,7 @@ fetch(URL + 'city/getCityList', {
     headers: {
         'Content-Type': 'application/json'
     },
-    body: JSON.stringify({id:cityId})
+    body: JSON.stringify({id:parseInt(cityId)})
 }).then((response) => response.json())
 // Then with the data from the response in JSON....then((data) => {
     .then((cityData) => {

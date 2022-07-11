@@ -283,7 +283,7 @@
                                     </button>
                                   </div>
 
-                                <form name="contactForm" id="update-profile-form" class="form-border" method="post" action="Login.html">
+                                <form id="update-profile-form" class="form-border" method="post">
                                     <center>
                                         <div class="wrapper">
                                             <input type="file" id="update-profile-img" class="my_file" name="img" placeholder="Choose Image Here" accept="image/*">
@@ -320,9 +320,9 @@
                                                 <th>
                                                     <p>Please select your gender:</p>
                                                     <label style="color: white" for="male">Male</label>
-                                                    <input type="radio" name="gender" id="update-profile-gender" value="male" checked/>
+                                                    <input type="radio" name="gender" id="update-profile-male" value="male" checked/>
                                                     <label style="color: white" for="female">Female</label>
-                                                    <input type="radio" name="gender" id="update-profile-gender" value="female"/>
+                                                    <input type="radio" name="gender" id="update-profile-female" value="female"/>
                                                 </th>
                                             </tr>
                                         </table>
@@ -381,11 +381,11 @@
                                     <div class="spacer-half"></div>
                                     <div class="row" >
                                         <div id="submit" style="padding-left: 30%;">
-                                            <input type="submit" id="update-profile-submitbtn" value="Update" class="btn btn-custom"/>
+                                            <input type="button" id="update-profile-submitbtn" value="Update" class="btn btn-custom"/>
                                         </div>
                                         
                                         <div id="submit" style="padding-left: 10%;">
-                                            <input type="submit" style="background-color:#FF4500 ;" id="update-profile-cancelbtn" value="Cancel" class="btn btn-custom"/>
+                                            <input type="button" style="background-color:#FF4500 ;" id="update-profile-cancelbtn" value="Cancel" class="btn btn-custom"/>
                                         </div>
 
                                     </div>
