@@ -1,5 +1,5 @@
 
-const URL="http://localhost:8081/api/"; 
+const URL="http://localhost:8081/api/";
 
 getLawyerlawSubTypeMapping();
 
@@ -32,40 +32,109 @@ const ProfileHomeCity= document.getElementById("profile-home-city");
 const ProfileHomeState= document.getElementById("profile-home-state");
 const ProfileHomeCountry= document.getElementById("profile-home-country");
 
-ProfileHomelawyerName.innerHTML=localStorage.getItem('name');
-ProfileHomeEmail.innerHTML=localStorage.getItem('email');
-ProfileHomeMobile.innerHTML=localStorage.getItem('mobile');
-ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
-ProfileHomedob.innerHTML=localStorage.getItem('dob');
-ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
-ProfileHomeAddress.innerHTML=localStorage.getItem('address');
-const ProfileHomeErrorMsg = document.getElementById("profile-home-error-msg");
-var cityId=localStorage.getItem('cityId');
+// ProfileHomelawyerName.innerHTML=localStorage.getItem('name');
+// ProfileHomeEmail.innerHTML=localStorage.getItem('email');
+// ProfileHomeMobile.innerHTML=localStorage.getItem('mobile');
+// ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
+// ProfileHomedob.innerHTML=localStorage.getItem('dob');
+// ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
+// ProfileHomeAddress.innerHTML=localStorage.getItem('address');
+// const ProfileHomeErrorMsg = document.getElementById("profile-home-error-msg");
+// var cityId=localStorage.getItem('cityId');
 
+
+
+
+async function sendRequestWithToken(apiPath,data)
+{
+    const reponse= await fetch("http://localhost:8081/api/"+apiPath,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'token':''+localStorage.getItem('token')+'',
+        },
+        body: JSON.stringify(data)
+    });
+
+    var data=reponse.json();
+    return data;
+
+}
+async function sendRequestWithOutToken(apiPath,data)
+{
+    const reponse= await fetch("http://localhost:8081/api/"+apiPath,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    var data=reponse.json();
+    return data;
+
+}
+const ProfileHomeErrorMsg = document.getElementById("profile-home-error-msg");
+var profileOutput=sendRequestWithToken("lawyer/getProfile",{} );
+//var cityId=profileOutput.then(dataString.code);
+console.log(profileOutput.then(dataString=>{ return dataString.obj.code}));
+console.log("hello");
+profileOutput.then((dataString=>{
+    if(dataString.code=="200")
+    {
+        //console.log(dataString);
+//         ProfileHomelawyerName.innerHTML=localStorage.getItem('name');
+// ProfileHomeEmail.innerHTML=localStorage.getItem('email');
+// ProfileHomeMobile.innerHTML=localStorage.getItem('mobile');
+// ProfileHomeEexperience.innerHTML=localStorage.getItem('experience');
+// ProfileHomedob.innerHTML=localStorage.getItem('dob');
+// ProfileHomeLicenseNo.innerHTML=localStorage.getItem('licenseNo');
+// ProfileHomeAddress.innerHTML=localStorage.getItem('address');
+
+//var cityId=localStorage.getItem('cityId');
+
+        ProfileHomelawyerName.innerHTML=dataString.obj.name;
+        ProfileHomeEmail.innerText=dataString.obj.email;
+        ProfileHomeMobile.innerText=dataString.obj.mobile;
+        ProfileHomeEexperience.innerText=dataString.obj.experience;
+        ProfileHomedob.innerText=dataString.obj.dob;
+        ProfileHomeLicenseNo.innerText=dataString.obj.licenseNo;
+        ProfileHomeAddress.innerText=dataString.obj.address;
+
+        fetch(URL + 'city/getCityList', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id:parseInt(dataString.obj.city_id)})
+        }).then((response) => response.json())
+        // Then with the data from the response in JSON....then((data) => {
+            .then((cityData) => {
+            ////console.log('Success:', data);
+            //console.log('Success:', cityData.obj);
+            //data.obj;
+            if (cityData.code == "200") {
+                //console.log(cityData.obj.stateId);
+                ProfileHomeCity.innerHTML=cityData.obj.name;
+                ProfileHomeState.innerHTML=cityData.obj.stateName;
+                ProfileHomeCountry.innerHTML=cityData.obj.countryName;
+
+
+            }
+            // Rdata = data;
+        });
+        // console.log(dataString.obj);
+        // console.log(dataString.obj.city_id);
+        // cityId=dataString.obj.city_id;
+   }else{
+        ProfileViewErrorMsg.innerText=dataString.obj;
+        ProfileViewErrorMsg.hidden=false;
+    }
+
+}));
 //console.log(localStorage.getItem('token'));
 
-fetch(URL + 'city/getCityList', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({id:parseInt(cityId)})
-}).then((response) => response.json())
-// Then with the data from the response in JSON....then((data) => {
-    .then((cityData) => {
-    ////console.log('Success:', data);
-    //console.log('Success:', cityData.obj);
-    //data.obj;
-    if (cityData.code == "200") {
-        //console.log(cityData.obj.stateId);
-        ProfileHomeCity.innerHTML=cityData.obj.name;
-        ProfileHomeState.innerHTML=cityData.obj.stateName;
-        ProfileHomeCountry.innerHTML=cityData.obj.countryName;
-        
-        
-    } 
-    // Rdata = data;
-});
+
 
 
 
@@ -91,26 +160,26 @@ fetch(URL + 'lawType/getLawTypeList', {
                 var option = document.createElement("option");
                 option.value ='None';
                 option.text = 'None';
-                
+
                 ProfileHomeSelectLawType.add(option);
                 for (var i = 0; i < lawType.obj.length; i++) {
                     //console.log(lawType.obj[i].name);
                     var option = document.createElement("option");
                     option.value = lawType.obj[i].id;
                     option.text = lawType.obj[i].name;
-                    
+
                     ProfileHomeSelectLawType.add(option);
                     //console.log(ProfileHomeSelectLawType.value);
-                    
+
 
 
                 }
-        
-    } 
-  
+
+    }
+
 });
 ProfileHomeSelectLawType.addEventListener('change',(e) => {
-    
+
     if(ProfileHomeSelectLawType.value!='None')
     {
         fetch(URL + 'lawSubtype/getLawSubtypeByLawTypeIdList', {
@@ -131,21 +200,21 @@ ProfileHomeSelectLawType.addEventListener('change',(e) => {
                         var option = document.createElement("option");
                         option.value ='None';
                         option.text = 'None';
-                        
+
                         ProfileHomeSelectLawSubtype.add(option);
                         for (var i = 0; i < lawSubType.obj.length; i++) {
                             //console.log(lawSubType.obj[i].name);
                             var option = document.createElement("option");
                             option.value = lawSubType.obj[i].id;
                             option.text = lawSubType.obj[i].name;
-                            
+
                             ProfileHomeSelectLawSubtype.add(option);
-        
-        
+
+
                         }
-                
-            } 
-          
+
+            }
+
         });
     }else
     {
@@ -169,8 +238,8 @@ async function lawyerLawSubtypeMappingAPI(data,apiName)
 
     var data=reponse.json();
     return data;
-    
-} 
+
+}
 
 
 
@@ -178,9 +247,9 @@ function deleteLawyerSubtypeMapping(lawyerSubtypeMappingid){
     console.log('delete id '+lawyerSubtypeMappingid);
     var input={id:lawyerSubtypeMappingid}
 
-    
+
     var output=lawyerLawSubtypeMappingAPI(input,"deleteLawyerLawSubtypeMappingById");
-    
+
     output.then((getdata=>{
         if(getdata.code=="201")
         {
@@ -189,11 +258,11 @@ function deleteLawyerSubtypeMapping(lawyerSubtypeMappingid){
         }else{
             location.reload();
             ProfileHomeErrorMsg.hidden=true;
-            
+
             $("#profile-home-success-msg a").text(getdata.obj);
             document.getElementById("profile-home-success-msg").hidden=false;
             //window.location.href = 'profile-home.html';
-            
+
         }
 
     }));
@@ -203,15 +272,15 @@ const ProfileHomeAddTypeBtn= document.getElementById("profile-home-addTypeBtn");
 const ProfileHomeUlLawSubType= document.getElementById("profile-home-ul-lawSubType");
 
 function getLawyerlawSubTypeMapping(){
-   
+
 
     var input={};
     var output=lawyerLawSubtypeMappingAPI(input,"getLawyerLawSubtypeMappingList");
-    
+
     output.then((getdata=>{
-        
+
         $("#profile-home-ul-lawSubType").innerHTML=null;
-            
+
         if(getdata.code=="201")
         {
             ProfileHomeErrorMsg.innerText=getdata.obj;
@@ -221,7 +290,7 @@ function getLawyerlawSubTypeMapping(){
 
             console.log("getdata");
             console.log(getdata);
-            
+
             for (var i = 0; i < getdata.obj.length; i++) {
                 console.log(getdata.obj.lawSubtypeName);
                 $("#profile-home-ul-lawSubType #profile-home-ul-row").append("<div><div class='row' style='padding-right: 40px;'>\
@@ -231,17 +300,17 @@ function getLawyerlawSubTypeMapping(){
                     <span aria-hidden='true'>&times;</span>\
                 </button></center>\
             </div></div>");
-                
+
             }
         }
-        
+
     }));
 
 }
 
 
 ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
-    
+
     if(ProfileHomeSelectLawSubtype.value=="None")
     {console.log("ntm");
         ProfileHomeErrorMsg.innerText="Please Select Subtype.";
@@ -249,7 +318,7 @@ ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
     }else{
         var input={lawSubtypeId:ProfileHomeSelectLawSubtype.value};
         var output=lawyerLawSubtypeMappingAPI(input,"saveLawyerLawSubtypeMapping");
-        
+
         output.then((data=>{
             if(data.code=="201")
             {
@@ -262,13 +331,13 @@ ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
             $("#profile-home-success-msg a").text(data.obj);
             document.getElementById("profile-home-success-msg").hidden=false;
             }
-            
 
-            
+
+
         }));
-        
-        
-        
+
+
+
         // fetch(URL + , {
         //     method: 'POST',
         //     headers: {
@@ -284,7 +353,7 @@ ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
         //     //countryData.obj;
         //     if (lawType.code == "200") {
         //                 ProfileHomeSelectLawType.innerHTML=null;
-                        
+
         //                 console.log(ProfileHomeSelectLawSubtype.value);
         //                 console.log(ProfileHomeSelectLawSubtype.options[ProfileHomeSelectLawSubtype.selectedIndex].text);
         //                 var li = document.createElement("li");
@@ -297,18 +366,18 @@ ProfileHomeAddTypeBtn.addEventListener("click",(e)=> {
         //                     //atag.text= ;
         //                     ProfileHomeSelectLawType.add(option);
         //                     //console.log(ProfileHomeSelectLawType.value);
-                            
-        
-        
+
+
+
         //                 }
-                
-        //     } 
-          
+
+        //     }
+
         // });
 
-        
 
-        
+
+
         //ProfileHomeUlLawSubType.appendChild(li)
     }
 });

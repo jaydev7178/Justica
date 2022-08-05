@@ -146,16 +146,46 @@
             <!-- section close -->
             <section>
                 <div class="container">
-                    <div class="row">
-                       
-                        <div class="col-lg-8 col-md-6 mb30">
+                    <div class="mb30" >
+                        <label style="margin-top: 10px;"><b>Find Lawyer by name:</b></label>&nbsp;
+                        <input id="searchLawyerName" type="text">
+                        &nbsp;
+                        
+                        <label><b>Country</b></label><span></span>
+                        <select style="width:15% ;">
+                            <option value="None">None</option>
+                            
+                        </select>
+                        &nbsp;
+                        &nbsp;
+                        <label><b>State</b></label><span></span>
+                        <select style="width:15% ;"> 
+                            <option value="None">None</option>
+                            
+                        </select>
+                        
+                        &nbsp;
+                        &nbsp;
+                        <label><b>City</b></label><span></span>
+                        <select style="width:15% ;">
+                            <option value="None">None</option>
+                            
+                        </select>
+                    </div>
+                    <div>
+                        <input id="searchLawyerBtn" type="submit" value="Search" style="background-color: #6CBB3C;" class="btn btn-custom btn">
+                    </div>
+                    <br>
+                    <div class="row" id="searchedList">
+                        
+                        <!-- <div class="col-lg-8 col-md-6 mb30">
                             <div class="f-box f-icon-left f-icon-rounded">
                                 <div class="lawyer-badge-avatar" style="padding-right:20px">
                                 <a href="#">
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -183,7 +213,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -211,7 +241,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -239,7 +269,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -267,7 +297,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -295,7 +325,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -323,7 +353,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -351,7 +381,7 @@
                                     <img alt="Poonam Desai" src="../JUSTICA_HTML/images/team/1 - Copy.jpg" style="border: 10px solid #eaa636;">
                                 </a>
                             </div>
-                                <!-- <i class="icofont-group bg-color text-light"></i> -->
+                                
                                 <div class="fb-text">
                                     <a href="#"><h4 style="width:163.5px;">Poonam Desai</h4></a>
                                     
@@ -373,37 +403,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-3 mb30" style="border: 5px solid black;">
-                            <label style="margin-top: 10px;"><b>Find Lawyer by name:</b></label><br>
-                            <input type="text"><br><br>
-
-                            <label><b>Location</b></label><br>
-                            <select>
-                                <option>Vaddara</option>
-                                <option>Surat</option>
-                                <option>Ahmedabad</option>
-                                <option>Mumbai</option>
-                                <option>Goa</option>
-
-                            </select><br><br>
-                            <select>
-                                <option>Vaddara</option>
-                                <option>Surat</option>
-                                <option>Ahmedabad</option>
-                                <option>Mumbai</option>
-                                <option>Goa</option>
-
-                            </select><br><br>
-                            <select>
-                                <option>Vaddara</option>
-                                <option>Surat</option>
-                                <option>Ahmedabad</option>
-                                <option>Mumbai</option>
-                                <option>Goa</option>
-
-                            </select>
-
-                        </div>
+                         -->
                         
                     </div>
                 </div>
@@ -499,6 +499,7 @@
     
     <!-- Javascript Files
     ================================================== -->
+    <script src="js/search-lawyer.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/wow.min.js"></script>

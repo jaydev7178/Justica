@@ -10,6 +10,22 @@ const registrationFormSelectState = document.getElementById("registration-form-s
 const registrationFormSelectCity = document.getElementById("registration-form-selectCity");
 
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() ; //January is 0!
+var yyyy = today.getFullYear()-18;
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("dob").setAttribute("max", today);
+
 var html = '';
 
 fetch(URL + 'country/getCountryList', {
@@ -172,6 +188,7 @@ registrationButton.addEventListener("click", (e) => { // Prevent the default sub
         experience: null,
         licenseNo: varlicenseNo,
         fees: null,
+        gender: registrationForm.gender.value,
         image: null,
         address: registrationForm.address.value,
         city_id: registrationFormSelectCity.value
@@ -184,18 +201,25 @@ registrationButton.addEventListener("click", (e) => { // Prevent the default sub
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
+
     }).then((response) => response.json())
-    // Then with the data from the response in JSON....then((data) => { // console.log('Success:', data);
+    .then(data=>{
+        console.log(data.code);
         if (data.code == '201') {
             console.log(data.obj);
             registrationErrorMsg.innerHTML = data.obj;
             registrationErrorMsg.hidden = false;
 
         } else if (data.code == '200') {
+            console.log("data.obj");
             console.log(data.obj);
-            window.location.href = 'login.html';
             alert("You have Registered successfully.");
-        }
+            window.location.href = 'login.html';
+            
+        }    
+    });
+    // Then with the data from the response in JSON....then((data) => { // console.log('Success:', data);
+    
     });
     // Then with the error genereted....catch((error) => {
        

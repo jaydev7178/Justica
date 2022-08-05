@@ -1,11 +1,13 @@
-const token = localStorage.getItem('token');
-        //console.log('token is '+token);
-        if(!token)
-        {
-            window.location.href = "login.html";
-            document.getElementById("login-error-msg").innerHTML('Session expired, Please login again.');
-            document.getElementById("login-error-msg").hidden=false;
-        }
+// const token = localStorage.getItem('token');
+//         console.log('token is '+token);
+//         if(!token)
+//         {
+//             window.location.href = "login.html";
+//             document.getElementById("login-error-msg").innerHTML('Session expired, Please login again.');
+//             document.getElementById("login-error-msg").hidden=false;
+//         }
+var urlData=new URL(window.location.href).searchParams.get("id");
+console.log(urlData);
 
         const ProfileViewErrorMsg = document.getElementById("profile-view-error-msg");
 
@@ -58,7 +60,7 @@ async function sendRequestWithOutToken(apiPath,data)
     
 }
 
-var profileOutput=sendRequestWithToken("lawyer/getProfile",{} );
+var profileOutput=sendRequestWithOutToken("lawyer/getLawyerList",{id:urlData } );
 
 profileOutput.then((dataString=>{
     if(dataString.code=="200")
